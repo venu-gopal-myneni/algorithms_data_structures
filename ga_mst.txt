@@ -1,0 +1,35 @@
+Greedy Algorithms & Minimum Spanning Trees
+------------------------------------------------------
+
+Intro:
+Graph (G) = G(V,E)
+|E| = O(V x V)
+
+Types:
+1) Directed (out degree, in degree)
+2) Undirected (degree)
+
+Representation:
+1) Adjacency Matrix (dense graphs)
+2) Adjacency Lists (sparse graphs)
+
+Handshaking Lemma (undirected graph):
+V = n
+n + n-1 + n-2+.... = O(n X n)
+
+Minimum Spanning Trees(MST):
+Uses:
+1) Very imp in distributed systems.
+2) Travelling sales man ?
+3) telecom towers 
+Input:
+1) connected undirected graph with weighted edges.
+Output:
+1) A spanning tree (set of edges connecting all vertices and no cycles) with minimum weight.
+Properties of an MST:
+1) optimal substructure
+2) overlapping subproblems
+3) Hence we can use DYNAMIC PROGRAMMING to solve for MST
+4) In addition MST also has an additional property i.e. "greedy choice property (a locally optimally choice is a globally optimal choice)" which is a hallmark for greedy algorithms.
+
+PRIM's ALGORITHM:
