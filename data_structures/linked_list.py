@@ -31,7 +31,10 @@ class Node:
 class DoublyLinkedList:
     def __init__(self, seq=None):  # [1,2,3,4,5]
         self.head = None
+        self.tail = None
+        self.length = 0
         if seq is not None:
+            self.length = len(seq)
             self.head = Node(seq[0])
             cur_node = self.head
             for ele in seq[1:]:
@@ -39,13 +42,41 @@ class DoublyLinkedList:
                 new_node.previous = cur_node
                 cur_node.next = new_node
                 cur_node = new_node
+            self.tail = cur_node
+
+    def __iter__(self):
+        cur_node = self.head
+        while cur_node is not None:
+            yield cur_node
+            cur_node = cur_node.next
+
+    def add_node(self, node: Node, direction: str = "right"):
+        if direction == "left":
+            self.tail.next = node
+            self.tail = node
+        elif direction == "right":
+            node.next = self.head
+            self.head = node
+        else:
+            raise ValueError(f"direction can take only right or left but {direction} was given")
 
     def __str__(self):
         out = str(self.head)
         cur_node = self.head
+        if cur_node is None:
+            return out
         while cur_node.next is not None:
-            out = f"{out} -> {cur_node.next}"
+            out = f"{out} <--> {cur_node.next}"
             cur_node = cur_node.next
+        return out
+
+    def __repr__(self):
+        out = "None"
+        for node in self:
+            if node.is_head:
+                out = f"{node}"
+            else:
+                out = f"{out} - {node}"
         return out
 
 
@@ -60,3 +91,15 @@ if __name__ == "__main__":
 
     ll = DoublyLinkedList([23, 12, 45, 67, 100])
     print(ll)
+    print(repr(ll))
+    # print(ll.head)
+    # print(ll.head.next.next)
+    # print(ll.tail.next)
+
+    for node in ll:
+        print(node)
+
+    ll = DoublyLinkedList()
+    print(repr(ll))
+    for node in ll:
+        print(node)
